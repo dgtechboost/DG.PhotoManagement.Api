@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DG.PhotoManagement.Contracts\DG.PhotoManagement.Contracts.csproj" />
+    <ProjectReference Include="..\DG.PhotoManagement.Data\DG.PhotoManagement.Data.csproj" />
+  </ItemGroup>
+
+</Project>
