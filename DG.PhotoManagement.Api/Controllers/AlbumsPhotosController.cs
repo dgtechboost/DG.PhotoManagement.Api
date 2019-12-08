@@ -45,7 +45,7 @@ namespace DG.PhotoManagement.Api.Controllers
         /// Endpoint resource to get all AlbumPhotos based on UserId
         /// </summary>
         /// <returns>List of AlbumPhoto list of objects</returns>
-        [HttpGet("{id}")]
+        [HttpGet("user/{id}")]
         public async Task<IActionResult> GetListByUserId(int id)
         {
             try
