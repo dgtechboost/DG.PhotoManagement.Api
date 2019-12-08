@@ -1,14 +1,14 @@
 ﻿using System.Linq;
 using DG.PhotoManagement.Data;
 
-namespace DG.PhotoManagement.Business.Photos.GetList
+namespace DG.PhotoManagement.Business.Photos.Queries.GetList
 {
-    public class GetPhotoList
-        : IGetPhotoList
+    public class GetPhotoListQuery
+        : IGetPhotoListQuery
     {
         private readonly PhotoManagementDbContext _dbContext;
 
-        public GetPhotoList(
+        public GetPhotoListQuery(
             PhotoManagementDbContext dbContext)
         {
             _dbContext = dbContext;

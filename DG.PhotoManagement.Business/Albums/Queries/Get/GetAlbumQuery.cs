@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DG.PhotoManagement.Business.Albums.Get
+namespace DG.PhotoManagement.Business.Albums.Queries.Get
 {
-    public class GetAlbum
-        : IGetAlbum
+    public class GetAlbumQuery
+        : IGetAlbumQuery
     {
         private readonly PhotoManagementDbContext _dbContext;
         private readonly IJSONPlaceholderService _jSONPlaceholderService;
 
-        public GetAlbum(
+        public GetAlbumQuery(
             PhotoManagementDbContext dbContext)
         {
             _dbContext = dbContext;

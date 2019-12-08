@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace DG.PhotoManagement.Business.Photos.Get
+namespace DG.PhotoManagement.Business.Photos.Queries.Get
 {
-    public interface IGetPhoto
+    public interface IGetPhotoQuery
     {
         Task<PhotoModel> ExecuteAsync(int id);
     }

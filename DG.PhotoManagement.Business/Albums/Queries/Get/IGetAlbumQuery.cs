@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace DG.PhotoManagement.Business.Albums.Get
+namespace DG.PhotoManagement.Business.Albums.Queries.Get
 {
-    public interface IGetAlbum
+    public interface IGetAlbumQuery
     {
         Task<AlbumModel> ExecuteAsync(int id);
     }

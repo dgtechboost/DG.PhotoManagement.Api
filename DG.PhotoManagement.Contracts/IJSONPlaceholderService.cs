@@ -7,14 +7,13 @@ namespace DG.PhotoManagement.Contracts
     public interface IJSONPlaceholderService
     {
         [Get("/albums")]
-        //Task<string> GetAlbumListAsync();
         Task<List<AlbumContract>> GetAlbumListAsync();
         [Get("/albums/{id}")]
         Task<AlbumContract> GetAlbumAsync(int id);
 
         [Get("/photos")]
-        Task<List<AlbumContract>> GetPhotoListAsync();
+        Task<List<PhotoContract>> GetPhotoListAsync();
         [Get("/photos/{id}")]
-        Task<AlbumContract> GetPhotoAsync(int id);
+        Task<PhotoContract> GetPhotoAsync(int id);
     }
 }

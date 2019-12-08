@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DG.PhotoManagement.Business.Albums.Get;
+using DG.PhotoManagement.Business.Albums.Queries.Get;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DG.PhotoManagement.Api.Controllers
@@ -10,12 +10,12 @@ namespace DG.PhotoManagement.Api.Controllers
     public class AlbumController
         : ControllerBase
     {
-        private readonly IGetAlbum _getAlbum;
+        private readonly IGetAlbumQuery _getAlbumQuery;
 
         public AlbumController(
-            IGetAlbum getAlbum)
+            IGetAlbumQuery getAlbumQuery)
         {
-            _getAlbum = getAlbum;
+            _getAlbumQuery = getAlbumQuery;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace DG.PhotoManagement.Api.Controllers
         {
             try
             {
-                var album = await _getAlbum.ExecuteAsync(id);
+                var album = await _getAlbumQuery.ExecuteAsync(id);
 
                 return Ok(album);
             }

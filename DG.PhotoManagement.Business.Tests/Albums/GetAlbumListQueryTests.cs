@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoFixture;
 using AutoFixture.AutoMoq;
-using DG.PhotoManagement.Business.Photos.Get;
+using DG.PhotoManagement.Business.Albums.Queries.GetList;
 using DG.PhotoManagement.Data;
 using DG.PhotoManagement.Data.Entities;
 using NUnit.Framework;
 
-namespace DG.PhotoManagement.Business.Tests.Photos
+namespace DG.PhotoManagement.Business.Tests.Albums
 {
-    public class GetPhotoTests
+    public class GetAlbumListQueryTests
     {
         private IFixture _fixture;
         private PhotoManagementDbContext _dbContext;
@@ -26,35 +26,27 @@ namespace DG.PhotoManagement.Business.Tests.Photos
         {
             _dbContext = DataContextTestHelper.MockDataContext<PhotoManagementDbContext>();
 
-            //add noise
-            _dbContext.Photos.AddRange(_fixture.CreateMany<Photo>());
-            _dbContext.SaveChanges();
-
             _fixture.Inject(_dbContext);
         }
 
         [Test]
-        public async Task ShouldGetSpecificPhoto()
+        public void ShouldGetAllAlbums()
         {
             // Arrange
-            var photo = _fixture.Create<Photo>();
+            var albums = _fixture.CreateMany<Album>(5);
 
-            _dbContext.Photos.Add(photo);
+            _dbContext.Albums.AddRange(albums);
             _dbContext.SaveChanges();
 
-            var query = _fixture.Create<GetPhoto>();
+            var query = _fixture.Create<GetAlbumListQuery>();
 
             // Act
 
-            var result = await query.ExecuteAsync(photo.Id);
+            var result = query.GetQuery();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(photo.Id, result.Id);
-            Assert.AreEqual(photo.Title, result.Title);
-            Assert.AreEqual(photo.ThumbnailUrl, result.ThumbnailUrl);
-            Assert.AreEqual(photo.Url, result.Url);
-            Assert.AreEqual(photo.AlbumId, result.AlbumId);
+            Assert.AreEqual(result.Count(), 5);
         }
     }
 }

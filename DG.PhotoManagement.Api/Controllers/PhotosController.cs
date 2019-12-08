@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DG.PhotoManagement.Business.Photos.GetList;
+using DG.PhotoManagement.Business.Photos.Queries.GetList;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DG.PhotoManagement.Api.Controllers
@@ -10,11 +10,11 @@ namespace DG.PhotoManagement.Api.Controllers
     public class PhotosController
         : ControllerBase
     {
-        private readonly IGetPhotoList _getPhotoList;
+        private readonly IGetPhotoListQuery _getPhotoListQuery;
         public PhotosController(
-            IGetPhotoList getPhotoList)
+            IGetPhotoListQuery getPhotoListQuery)
         {
-            _getPhotoList = getPhotoList;
+            _getPhotoListQuery = getPhotoListQuery;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace DG.PhotoManagement.Api.Controllers
         {
             try
             {
-                var photos = _getPhotoList.GetQuery().ToList();
+                var photos = _getPhotoListQuery.GetQuery().ToList();
 
                 return Ok(photos);
             }

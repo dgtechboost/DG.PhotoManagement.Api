@@ -1,14 +1,14 @@
 ﻿using System.Linq;
 using AutoFixture;
 using AutoFixture.AutoMoq;
-using DG.PhotoManagement.Business.Albums.GetList;
+using DG.PhotoManagement.Business.Photos.Queries.GetList;
 using DG.PhotoManagement.Data;
 using DG.PhotoManagement.Data.Entities;
 using NUnit.Framework;
 
-namespace DG.PhotoManagement.Business.Tests.Albums
+namespace DG.PhotoManagement.Business.Tests.Photos
 {
-    public class GetAlbumListTests
+    public class GetPhotoListQueryTests
     {
         private IFixture _fixture;
         private PhotoManagementDbContext _dbContext;
@@ -30,15 +30,15 @@ namespace DG.PhotoManagement.Business.Tests.Albums
         }
 
         [Test]
-        public void ShouldGetAllAlbums()
+        public void ShouldGetAllPhotos()
         {
             // Arrange
-            var albums = _fixture.CreateMany<Album>(5);
+            var photos = _fixture.CreateMany<Photo>(5);
 
-            _dbContext.Albums.AddRange(albums);
+            _dbContext.Photos.AddRange(photos);
             _dbContext.SaveChanges();
 
-            var query = _fixture.Create<GetAlbumList>();
+            var query = _fixture.Create<GetPhotoListQuery>();
 
             // Act
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DG.PhotoManagement.Business.Photos.Get;
+using DG.PhotoManagement.Business.Photos.Queries.Get;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DG.PhotoManagement.Api.Controllers
@@ -10,12 +10,12 @@ namespace DG.PhotoManagement.Api.Controllers
     public class PhotoController
         : ControllerBase
     {
-        private readonly IGetPhoto _getPhoto;
+        private readonly IGetPhotoQuery _getPhotoQuery;
 
         public PhotoController(
-            IGetPhoto getPhoto)
+            IGetPhotoQuery getPhotoQuery)
         {
-            _getPhoto = getPhoto;
+            _getPhotoQuery = getPhotoQuery;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace DG.PhotoManagement.Api.Controllers
         {
             try
             {
-                var photo = await _getPhoto.ExecuteAsync(id);
+                var photo = await _getPhotoQuery.ExecuteAsync(id);
 
                 return Ok(photo);
             }

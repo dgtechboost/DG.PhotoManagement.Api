@@ -1,6 +1,6 @@
-﻿namespace DG.PhotoManagement.Business.Photos.Get
+﻿namespace DG.PhotoManagement.Business.AlbumPhotos.Queries.GetListByUserId
 {
-    public class PhotoModel
+    public class PhotoListByUserIdModel
     {
         public int Id { get; set; }
         public int AlbumId { get; set; }

@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
-using DG.PhotoManagement.Business.Albums.Get;
+using DG.PhotoManagement.Business.Albums.Queries.Get;
 using DG.PhotoManagement.Data;
 using DG.PhotoManagement.Data.Entities;
 using NUnit.Framework;
 
 namespace DG.PhotoManagement.Business.Tests.Albums
 {
-    public class GetAlbumTests
+    public class GetAlbumQueryTests
     {
         private IFixture _fixture;
         private PhotoManagementDbContext _dbContext;
@@ -42,7 +42,7 @@ namespace DG.PhotoManagement.Business.Tests.Albums
             _dbContext.Albums.Add(album);
             _dbContext.SaveChanges();
 
-            var query = _fixture.Create<GetAlbum>();
+            var query = _fixture.Create<GetAlbumQuery>();
 
             // Act
 

@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DG.PhotoManagement.Business.Albums.GetList;
+using DG.PhotoManagement.Business.AlbumPhotos.Queries.GetList;
+using DG.PhotoManagement.Business.AlbumPhotos.Queries.GetListByUserId;
+using DG.PhotoManagement.Business.Albums.Queries.GetList;
+using DG.PhotoManagement.Business.Albums.Queries.Remote.GetListRemote;
+using DG.PhotoManagement.Business.Photos.Queries.Remote.GetListRemote;
 using DG.PhotoManagement.Contracts;
 using DG.PhotoManagement.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Refit;
 
 namespace DG.PhotoManagement.Api
@@ -34,16 +32,17 @@ namespace DG.PhotoManagement.Api
             var defaultConnectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PhotoManagementDbContext>(options => options.UseSqlServer(defaultConnectionString));
 
-
-            services.AddScoped<IGetAlbumList, GetAlbumList>();
+            services.AddScoped<IGetAlbumListQuery, GetAlbumListQuery>();
+            services.AddScoped<IGetPhotoRemoteListQuery, GetPhotoRemoteListQuery>();
+            services.AddScoped<IGetAlbumRemoteListQuery, GetAlbumRemoteListQuery>();
+            services.AddScoped<IGetAlbumPhotoListQuery, GetAlbumPhotoListQuery>();
+            services.AddScoped<IGetAlbumPhotoListByUserIdQuery, GetAlbumPhotoListByUserIdQuery>();
 
             services.AddRefitClient<IJSONPlaceholderService>()
                     .ConfigureHttpClient(c => c.BaseAddress = new Uri("http://jsonplaceholder.typicode.com"));
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-                //.AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

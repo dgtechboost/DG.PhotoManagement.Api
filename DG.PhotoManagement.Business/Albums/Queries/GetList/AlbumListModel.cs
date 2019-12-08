@@ -1,4 +1,4 @@
-﻿namespace DG.PhotoManagement.Business.Albums.GetList
+﻿namespace DG.PhotoManagement.Business.Albums.Queries.GetList
 {
     public class AlbumListModel
     {
